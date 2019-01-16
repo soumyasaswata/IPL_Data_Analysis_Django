@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IPL DATA ANALYSIS</title>
+</head>
+<body>
+        {% block content %}
+        <h1 style="text-align: center">IPL DATA ANALYSIS</h1>
+        <p>HighChart Links</p>
+
+        <div>
+            <ol>
+                <li><a href="http://127.0.0.1:8000/matches-per-season/">Matches Played Per Season</a></li>
+                <li><a href="http://127.0.0.1:8000/wins-per-season">Matches won of all teams over all the years of IPL</a></li>
+                <li><a href="http://127.0.0.1:8000/extra-runs-per-season/">Extra runs conceded per team in 2016</a></li>
+                <li><a href="http://127.0.0.1:8000/top-economical-bowlers/">The top economical bowlers in 2015</a></li>
+                <li><a href="http://127.0.0.1:8000/wins-by-venue/">Number of times won by teams in M Chinnaswamy Stadium, Bangalore</a></li>
+            </ol>
+        </div>
+
+        <p>JSON Links</p>
+        <ol>
+            <li><a href="http://127.0.0.1:8000/matches-per-season-json/">Matches Played Per Season</a></li>
+            <li><a href="http://127.0.0.1:8000/wins-per-season-json">Matches won of all teams over all the years of IPL</a></li>
+            <li><a href="http://127.0.0.1:8000/extra-runs-json">Extra runs conceded per team in 2016</a></li>
+            <li><a href="http://127.0.0.1:8000/top-economical-bowloers-json">The top economical bowlers in 2015</a></li>
+            <li><a href="http://127.0.0.1:8000/wins-per-venue-json">Number of times won by teams in M Chinnaswamy Stadium, Bangalore</a></li>
+        </ol>
+        {% endblock %}
+</body>
+</html>

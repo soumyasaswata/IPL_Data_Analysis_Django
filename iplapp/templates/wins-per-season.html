@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<div id="matches_per_season"></div>
+<script>
+    var winner_per_season_data = JSON.parse('{{ winner_per_season | safe }}');
+
+    var series = [];
+    var names = [];
+
+    for (let match = 0; match < winner_per_season_data.length; match++) {
+        if (names.indexOf(winner_per_season_data[match].winner) !== -1) {
+            series[names.indexOf(winner_per_season_data[match].winner)].data.push({
+                x: winner_per_season_data[match].season,
+                y: winner_per_season_data[match].matches
+            })
+        } else {
+            names.push(winner_per_season_data[match].winner)
+            series.push({
+            name: winner_per_season_data[match].winner,
+            data: [{
+                    x: winner_per_season_data[match].season,
+                    y: winner_per_season_data[match].matches
+                }]
+            })
+        }
+    }
+
+    Highcharts.chart('matches_per_season', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Matches Won Per Season',
+        style: {
+        "fontSize": "16px",
+        "font-weight": "bold"
+        }
+    },
+    credits: {
+        enabled: false
+    },
+    xAxis: {
+        labels: {
+        style: {
+            fontWeight: 'bold'
+        }
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+        text: 'No. of wins',
+        style: {
+            fontWeight: 'bold'
+        }
+        },
+        stackLabels: {
+        enabled: false,
+        style: {
+            fontWeight: 'bold',
+            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+        }
+        }
+    },
+    legend: {
+        align: 'right',
+        x: -30,
+        verticalAlign: 'top',
+        y: 25,
+        floating: true,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+        borderColor: '#CCC',
+        borderWidth: 1,
+        shadow: false,
+        itemStyle: {
+        fontSize: '12px',
+        font: '12pt',
+        }
+    },
+    tooltip: {
+        headerFormat: '<b>{point.x}</b><br/>',
+        pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+    },
+    plotOptions: {
+        column: {
+        stacking: 'normal',
+        dataLabels: {
+            enabled: false,
+            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+        }
+        }
+    },
+    series: series
+    });
+</script>
+
+{% endblock %}

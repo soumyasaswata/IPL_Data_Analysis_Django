@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="container"></div>
+
+<script src="https://code.highcharts.com/highcharts.src.js"></script>
+<script>
+ Highcharts.chart('container', {
+     chart: {
+         type: 'column'
+     },
+     title: {
+         text: 'Top Ten Economical Bowler'
+     },
+     xAxis: {
+         categories: [
+           {% for match in top_ten_bowlers %}'{{ match.bowler }}'{% if not forloop.last %}, {% endif %}{% endfor %}
+         ]
+     },
+     yAxis:{
+        title:{
+            text: 'Economy'
+        }
+     },
+     series: [{
+         name: 'Economy Rate',
+         data: [
+           {% for match in top_ten_bowlers %}{{ match.economy }}{% if not forloop.last %}, {% endif %}{% endfor %}
+         ],
+         color: 'purple'
+     }]
+ });
+</script>
+{% endblock %}
