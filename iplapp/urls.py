@@ -26,8 +26,7 @@ urlpatterns = [
     path('top-economical-bowlers/', views.get_top_economical_bowlers, name = 'get_top_economical_bowlers'),
     path('matches-per-season-json/', views.get_matches_per_seasons_object, name = 'match_per_season_objects'),
     path('wins-per-season-json/', views.get_winner_by_season_object, name = 'winners_per_season_objects'),
-    path('wins-per-season-json/', views.get_winner_by_season_object, name = 'winners_per_season_objects'),
     path('extra-runs-json/', views.get_extra_runs_per_season_object, name = 'get_extra_runs_per_season_objects'),
     path('top-economical-bowloers-json/', views.get_top_economical_bowlers_object, name = 'get_wins_by_venue_objects'),
-    path('wins-per-venue-json/', views.get_wins_by_venue, name = 'wins_per_venue_objects')
+    path('wins-per-venue-json/', views.get_wins_by_venue_object, name = 'wins_per_venue_objects')
 ]

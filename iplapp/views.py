@@ -62,6 +62,6 @@ def get_wins_by_venue(request):
     context = {'wins_per_venue':wins_per_venue}
     return render(request, 'wins-by-venue.html', context)
 
-def get_wins_by_venue(request):
+def get_wins_by_venue_object(request):
     wins_per_venue = Matches.objects.values("winner").annotate(matches = Count('winner')).filter(venue = 'M Chinnaswamy Stadium')
     return JsonResponse(list(wins_per_venue), safe = False)
